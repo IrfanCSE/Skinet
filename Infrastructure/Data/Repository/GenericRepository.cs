@@ -13,6 +13,11 @@ namespace Infrastructure.Data.Repository {
             _context = context;
         }
 
+        public async Task<int> GetCountAsync(ISpecifications<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
+
         public async Task<IReadOnlyList<T>> GetEntityListWithSpec(ISpecifications<T> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
