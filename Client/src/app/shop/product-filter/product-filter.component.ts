@@ -1,3 +1,4 @@
+import { ShopComponent } from './../shop.component';
 import { Type } from './../../shared/Models/productType';
 import { Brand } from './../../shared/Models/brand';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -9,8 +10,6 @@ import { ProductParams } from 'src/app/shared/Models/productParams';
   styleUrls: ['./product-filter.component.scss'],
 })
 export class ProductFilterComponent implements OnInit {
-  brandId: number;
-  typeId: number;
 
   @Output() brandChanged = new EventEmitter<number>();
   @Output() typeChanged = new EventEmitter<number>();
@@ -24,16 +23,14 @@ export class ProductFilterComponent implements OnInit {
     { name: 'Price: Low to High', value: 'priceAsc' },
     { name: 'Price: High to Low', value: 'priceDesc' },
   ];
-  constructor() {}
+  constructor(private shop: ShopComponent) {}
 
   ngOnInit(): void {}
 
   OnBrandSelected(brandId: number) {
-    this.brandId = brandId;
     this.brandChanged.emit(brandId);
   }
   OnTypeSelected(typeId: number) {
-    this.typeId = typeId;
     this.typeChanged.emit(typeId);
   }
   OnSortSelected(sort: string) {

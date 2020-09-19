@@ -1,6 +1,6 @@
 import { Type } from './../shared/Models/productType';
 import { Brand } from './../shared/Models/brand';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Pageination } from '../shared/Models/pageination';
 import { Product } from '../shared/Models/product';
 import { ShopService } from './shop.service';
@@ -18,9 +18,14 @@ export class ShopComponent implements OnInit {
   pageination: Pageination;
   productParams = new ProductParams();
 
+  @ViewChild('search') searchTerm: ElementRef;
+
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
+    this.productParams.brandId = 0;
+    this.productParams.typeId = 0;
+
     this.getProducts();
     this.getBrands();
     this.getTypes();
@@ -34,31 +39,47 @@ export class ShopComponent implements OnInit {
 
   getBrands(){
     this.shopService.getBrands().subscribe(res => {
-      this.brands = res;
+      this.brands = [{id: 0, name: 'All'}, ...res];
     });
   }
 
   getTypes(){
     this.shopService.getTypes().subscribe(res => {
-      this.types = res;
+      this.types = [{id: 0, name: 'All'}, ...res];
     });
   }
 
   OnBrandSelected(brandId: number){
     this.productParams.brandId = brandId;
     this.getProducts();
-    console.log(brandId);
   }
   OnTypeSelected(typeId: number){
     this.productParams.typeId = typeId;
     this.getProducts();
-    console.log(typeId);
 
   }
   OnSortSelected(sort: string){
     this.productParams.sort = sort;
     this.getProducts();
-    console.log(sort);
+  }
+
+  OnSearch(){
+    this.productParams = new ProductParams();
+    this.productParams.search = this.searchTerm.nativeElement.value;
+    this.productParams.sort = 'name';
+
+    this.getProducts();
+  }
+
+  OnReset(){
+    this.productParams = new ProductParams();
+    this.searchTerm.nativeElement.value = null;
+
+    this.productParams.brandId = 0;
+    this.productParams.typeId = 0;
+    this.productParams.sort = 'name';
+
+    this.getProducts();
   }
 
 }

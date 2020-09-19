@@ -2,6 +2,7 @@
     <select class="custom-select mb-3" (change)="OnSortSelected($event.target.value)">
       <option *ngFor="let sort of sortOptions"
         [value]="sort.value"
+        [selected]="shop.productParams.sort===sort.value"
       >{{sort.name}}</option>
     </select>
 
@@ -10,7 +11,7 @@
       <li class="list-group-item"
       *ngFor="let brand of brands"
       [value]="brand.id"
-      [class.active]="brand.id === brandId"
+      [class.active]="shop.productParams.brandId === brand.id"
       (click)="OnBrandSelected(brand.id)"
       >{{brand.name}}
       </li>
@@ -21,7 +22,7 @@
       <li class="list-group-item"
       *ngFor="let type of types"
       [value]="type.id"
-      [class.active]="type.id === typeId"
+      [class.active]="shop.productParams.typeId === type.id"
       (click)="OnTypeSelected(type.id)"
       >{{type.name}}</li>
     </ul>
