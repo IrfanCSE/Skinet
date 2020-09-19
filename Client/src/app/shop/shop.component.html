@@ -1,33 +1,9 @@
 <div class="container row m-3">
 
   <section class="col-md-3">
-    <h5 class="textwar ml-3">Sort</h5>
-    <select class="custom-select mb-3" (change)="OnSortSelected($event.target.value)">
-      <option *ngFor="let sort of sortOptions"
-        [value]="sort.value"
-      >{{sort.name}}</option>
-    </select>
-
-    <h5 class="textwar ml-3">Brand</h5>
-    <ul class="list-group mb-3">
-      <li class="list-group-item"
-      *ngFor="let brand of brands"
-      [value]="brand.id"
-      [class.active]="brand.id === productParams.brandId"
-      (click)="OnBrandSelected(brand.id)"
-      >{{brand.name}}
-      </li>
-    </ul>
-
-    <h5 class="textwar ml-3">Type</h5>
-    <ul class="list-group mb-3">
-      <li class="list-group-item"
-      *ngFor="let type of types"
-      [value]="type.id"
-      [class.active]="type.id === productParams.typeId"
-      (click)="OnTypeSelected(type.id)"
-      >{{type.name}}</li>
-    </ul>
+    <app-product-filter [brands]="brands" [types]="types" (brandChanged)="OnBrandSelected($event)"
+      (typeChanged)="OnTypeSelected($event)" (sortChanged)="OnSortSelected($event)">
+    </app-product-filter>
   </section>
 
   <section class="col-md-9">
