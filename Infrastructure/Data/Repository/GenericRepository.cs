@@ -23,16 +23,16 @@ namespace Infrastructure.Data.Repository {
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        public async Task<T> GetEntityWithSpec(ISpecifications<T> spec)
+        public async Task<T> GetEntityWithSpec(ISpecifications<T> spec, int id)
         {
-            return await ApplySpecification(spec).FirstOrDefaultAsync();
+            return await ApplySpecification(spec).FirstOrDefaultAsync(x=>x.Id==id);
         }
 
-        public async Task<IReadOnlyList<T>> GetListItem () {
+        public async Task<IReadOnlyList<T>> GetEntityListWithOutSpec () {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetSingleItem (int id) {
+        public async Task<T> GetEntityWithOutSpec (int id) {
             return await _context.Set<T>().FindAsync(id);
         }
 
