@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
+
 import { ShopComponent } from './shop.component';
 import { ShopService } from './shop.service';
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -10,7 +12,8 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
 @NgModule({
   declarations: [ShopComponent, ProductsListComponent, ProductFilterComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PaginationModule
   ],
   providers: [ShopService],
   exports: [ShopComponent]

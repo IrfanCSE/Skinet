@@ -1,6 +1,10 @@
 export class ProductParams{
   brandId: number;
   typeId: number;
-  search: string;
   sort = 'name';
+
+  search: string;
+
+  pageSize: number;
+  pageIndex: number;
 }

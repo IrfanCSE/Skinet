@@ -20,6 +20,19 @@
     </div>
 
     <app-products-list [products]="products"></app-products-list>
+
+    <div class="justify-content-center" *ngIf="pageination.count>pageination.pageSize">
+      <pagination
+      [boundaryLinks]="true"
+      [totalItems]="pageination.count"
+      [itemsPerPage]="6"
+      (pageChanged)="OnPageChanged($event)"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;"
+      ></pagination>
+    </div>
   </section>
 
 </div>

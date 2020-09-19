@@ -29,6 +29,10 @@ export class ShopService {
       param = param.append('search',productParams.search);
     }
 
+    if(productParams.pageIndex){
+      param = param.append('pageIndex',productParams.pageIndex.toString());
+    }
+
     param = param.append('sort', productParams.sort);
 
     return this.http.get<Pageination>(this.baseUrl + 'products', {observe: 'response', params: param})
