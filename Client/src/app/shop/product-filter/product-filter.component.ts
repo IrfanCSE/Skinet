@@ -1,8 +1,6 @@
-import { ShopComponent } from './../shop.component';
 import { Type } from './../../shared/Models/productType';
 import { Brand } from './../../shared/Models/brand';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ProductParams } from 'src/app/shared/Models/productParams';
 
 @Component({
   selector: 'app-product-filter',
@@ -18,12 +16,16 @@ export class ProductFilterComponent implements OnInit {
   @Input() brands: Brand[];
   @Input() types: Type[];
 
+  @Input() selectedBrand: number;
+  @Input() selectedType: number;
+  @Input() selectedSort: string;
+
   sortOptions = [
     { name: 'Alphabeticl', value: 'name' },
     { name: 'Price: Low to High', value: 'priceAsc' },
     { name: 'Price: High to Low', value: 'priceDesc' },
   ];
-  constructor(private shop: ShopComponent) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

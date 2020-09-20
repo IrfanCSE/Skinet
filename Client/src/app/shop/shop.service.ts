@@ -25,11 +25,11 @@ export class ShopService {
       param = param.append('typeId', productParams.typeId.toString());
     }
 
-    if(productParams.search !== null && productParams.search !== undefined){
+    if(productParams.search !== '' && productParams.search !== undefined){
       param = param.append('search',productParams.search);
     }
 
-    if(productParams.pageIndex){
+    if(productParams.pageIndex > 0){
       param = param.append('pageIndex',productParams.pageIndex.toString());
     }
 

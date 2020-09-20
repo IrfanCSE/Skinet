@@ -20,7 +20,7 @@ export class ShopComponent implements OnInit {
     data: null,
     pageIndex: null,
     pageSize: null
-  }
+  };
   productParams = new ProductParams();
 
   @ViewChild('search') searchTerm: ElementRef;
@@ -75,12 +75,13 @@ export class ShopComponent implements OnInit {
   }
 
   OnSearch(){
-    this.productParams = new ProductParams();
-    this.productParams.search = this.searchTerm.nativeElement.value;
-    this.productParams.sort = 'name';
-    this.productParams.pageIndex = 1;
-
-    this.getProducts();
+    if(this.searchTerm.nativeElement.value){
+      this.productParams = new ProductParams();
+      this.productParams.search = this.searchTerm.nativeElement.value;
+      this.productParams.sort = 'name';
+      this.productParams.pageIndex = 1;
+      this.getProducts();
+    }
   }
 
   OnReset(){
@@ -90,13 +91,13 @@ export class ShopComponent implements OnInit {
     this.productParams.brandId = 0;
     this.productParams.typeId = 0;
     this.productParams.sort = 'name';
-    this.productParams.pageIndex = 1;
+    // this.productParams.pageIndex = 1;
 
     this.getProducts();
   }
 
   OnPageChanged($event){
-    if($event.page !== this.productParams.pageIndex){
+    if ($event.page !== this.productParams.pageIndex){
       this.productParams.pageIndex = $event.page;
       // this.productParams.pageSize = $event.itemsPerPage;
       this.getProducts();
