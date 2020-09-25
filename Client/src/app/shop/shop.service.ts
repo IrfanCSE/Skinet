@@ -5,6 +5,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Pageination } from '../shared/Models/pageination';
 import { ProductParams } from '../shared/Models/productParams';
 import {map} from 'rxjs/operators';
+import { Product } from '../shared/Models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -25,22 +26,26 @@ export class ShopService {
       param = param.append('typeId', productParams.typeId.toString());
     }
 
-    if(productParams.search !== '' && productParams.search !== undefined){
-      param = param.append('search',productParams.search);
+    if (productParams.search !== '' && productParams.search !== undefined){
+      param = param.append('search', productParams.search);
     }
 
-    if(productParams.pageIndex > 0){
-      param = param.append('pageIndex',productParams.pageIndex.toString());
+    if (productParams.pageIndex > 0){
+      param = param.append('pageIndex', productParams.pageIndex.toString());
     }
 
     param = param.append('sort', productParams.sort);
 
     return this.http.get<Pageination>(this.baseUrl + 'products', {observe: 'response', params: param})
     .pipe(
-      map(response =>{
+      map(response => {
         return response.body;
       })
     );
+  }
+
+  getProduct(id: number){
+    return this.http.get<Product>(this.baseUrl + 'products/' + id);
   }
 
   getBrands(){

@@ -1,1 +1,20 @@
-<p>product-view works!</p>
+<div *ngIf="product">
+  <div class="row">
+    <div class="col-6">
+        <img src="{{product.pictureUrl}}" alt="{{product.name}}" class="img-fluid w-100">
+    </div>
+    <div class="col-6 d-flex flex-column align-items-start">
+        <h3>{{product.name}}</h3>
+        <p>Price: {{product.price | currency}}</p>
+        <div class="d-flex">
+            <button class="fa fa-plus-circle btn fa-2x"></button>
+            <span class="font-weight-bold" style="font-size: 1.5rem;">5</span>
+            <button class="fa fa-minus-circle fa-2x btn"></button>
+        </div>
+    </div>
+</div>
+<div class="row d-flex flex-column align-items-start mt-3">
+    <h3 class="mx-5">Description:</h3>
+    <p class="mx-5">{{product.description}}</p>
+</div>
+</div>

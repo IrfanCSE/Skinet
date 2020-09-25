@@ -1,0 +1,21 @@
+.cart-no{
+  height: 25px;
+  width: 25px;
+  background-color: blue;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+
+  position: absolute;
+  top: -12px;
+  right: 32px;
+}
+
+a {
+  color: black;
+  cursor: pointer;
+
+  &.active{
+    color: orange;
+  }
+}

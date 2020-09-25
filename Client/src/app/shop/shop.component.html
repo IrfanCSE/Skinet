@@ -1,15 +1,9 @@
 <div class="container row m-3">
 
   <section class="col-md-3">
-    <app-product-filter
-      [brands]="brands"
-      [types]="types"
-      [selectedBrand]="productParams.brandId"
-      [selectedType]="productParams.typeId"
-      [selectedSort]="productParams.sort"
-      (brandChanged)="OnBrandSelected($event)"
-      (typeChanged)="OnTypeSelected($event)"
-      (sortChanged)="OnSortSelected($event)">
+    <app-product-filter [brands]="brands" [types]="types" [selectedBrand]="productParams.brandId"
+      [selectedType]="productParams.typeId" [selectedSort]="productParams.sort" (brandChanged)="OnBrandSelected($event)"
+      (typeChanged)="OnTypeSelected($event)" (sortChanged)="OnSortSelected($event)">
     </app-product-filter>
   </section>
 
@@ -18,7 +12,9 @@
     <div class="d-flex justify-content-between align-items-center pb-2">
       <div>
         <header *ngIf="pageination.count>0;else noResult">
-          <span>Showing <strong>{{pageination.pageSize>pageination.count ? pageination.count : pageination.pageSize}}</strong> of <strong>{{pageination.count}}</strong> Result</span>
+          <span>Showing
+            <strong>{{pageination.pageSize>pageination.count ? pageination.count : pageination.pageSize}}</strong> of
+            <strong>{{pageination.count}}</strong> Result</span>
         </header>
         <ng-template #noResult>
           <header>
@@ -28,7 +24,8 @@
       </div>
 
       <div class="form-inline mt-2">
-        <input (keyup.enter)="OnSearch()" #search class="form-control mr-2" style="width: 300px;" type="text" placeholder="Search" aria-label="Search">
+        <input (keyup.enter)="OnSearch()" #search class="form-control mr-2" style="width: 300px;" type="text"
+          placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-primary my-2 mr-2" (click)="OnSearch()">Search</button>
         <button class="btn btn-outline-success my-2" (click)="OnReset()">Reset</button>
       </div>
@@ -37,16 +34,9 @@
     <app-products-list [products]="products"></app-products-list>
 
     <div class="mt-2" *ngIf="pageination.count>pageination.pageSize">
-      <pagination
-      [boundaryLinks]="true"
-      [totalItems]="pageination.count"
-      [itemsPerPage]="pageination.pageSize"
-      (pageChanged)="OnPageChanged($event)"
-      previousText="&lsaquo;"
-      nextText="&rsaquo;"
-      firstText="&laquo;"
-      lastText="&raquo;"
-      ></pagination>
+      <pagination [boundaryLinks]="true" [totalItems]="pageination.count" [itemsPerPage]="pageination.pageSize"
+        (pageChanged)="OnPageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;"></pagination>
     </div>
   </section>
 
