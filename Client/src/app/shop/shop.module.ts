@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
@@ -8,6 +7,7 @@ import { ShopService } from './shop.service';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { ShopRoutingModule } from './shop-routing.module';
 
 
 
@@ -16,9 +16,8 @@ import { ProductViewComponent } from './product-view/product-view.component';
   imports: [
     CommonModule,
     PaginationModule,
-    RouterModule
+    ShopRoutingModule
   ],
   providers: [ShopService],
-  exports: [ShopComponent]
 })
 export class ShopModule { }
