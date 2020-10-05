@@ -22,6 +22,9 @@ export class ProductViewComponent implements OnInit {
   getProduct(id: number){
     this.shopService.getProduct(id).subscribe(res => {
       this.product = res;
+    },
+    error=> {
+      console.log(error);
     });
   }
 

@@ -19,3 +19,9 @@ a {
     color: orange;
   }
 }
+
+img{
+  &:focus{
+    outline: none;
+  }
+}
