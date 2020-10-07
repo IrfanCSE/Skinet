@@ -1,28 +1,32 @@
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor,
-  HttpResponse
-} from '@angular/common/http';
+  HttpInterceptor} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(error => {
-        if(error){
-          if(error.status === 204){
+        if (error){
+          if (error.status === 204){
+            this.toastr.error(error.error);
+          }
+
+          if (error.status === 404){
             this.router.navigateByUrl('/not-found');
           }
-          if(error.status === 500){
+
+          if (error.status === 500){
             this.router.navigateByUrl('/server-error');
           }
         }
