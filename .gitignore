@@ -236,3 +236,4 @@ _Pvt_Extensions
 # File
 *.png
 *.jpg
+appsettings.Development.json
