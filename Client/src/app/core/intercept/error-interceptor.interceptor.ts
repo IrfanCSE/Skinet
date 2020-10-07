@@ -18,8 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(error => {
         if (error){
-          if (error.status === 204){
-            this.toastr.error(error.error);
+          if (error.status === 400){
+            this.toastr.error(error.statusText, error.status);
           }
 
           if (error.status === 404){

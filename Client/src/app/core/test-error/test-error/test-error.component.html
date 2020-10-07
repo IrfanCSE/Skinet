@@ -1,1 +1,6 @@
-<button class="btn btn-outline-danger"><a routerLink="shop/17">204</a></button>
+<div class="d-flex">
+  <a class="btn btn-outline-danger ml-5 mr-4" (click)="GetNotFound()">Not-Found</a>
+  <a class="btn btn-outline-danger mr-4" (click)="GetServerError()">Server-Error</a>
+  <a class="btn btn-outline-danger mr-4" (click)="GetBadrequest()">Badrequest</a>
+  <a class="btn btn-outline-danger" (click)="GetValidationBadrequest()">Validation-Error</a>
+</div>
