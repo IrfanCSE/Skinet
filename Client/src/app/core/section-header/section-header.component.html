@@ -1,7 +1,7 @@
 <ng-container *ngIf="(breadcrumb$ | async) as breadcrumb">
   <section *ngIf="breadcrumb.length > 0 && breadcrumb[breadcrumb.length-1].label !== 'Home'" class="d-flex sectionhead">
     <div class="col-9">
-      <h1>{{breadcrumb[breadcrumb.length-1].label}}</h1>
+      <h1>{{breadcrumb.length > 0 && breadcrumb[breadcrumb.length-1].label}}</h1>
     </div>
 
     <div class="col-3">

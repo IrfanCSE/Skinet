@@ -13,7 +13,9 @@ export class ProductViewComponent implements OnInit {
 
   product: Product;
 
-  constructor(private shopService: ShopService, private param: ActivatedRoute, private bcService: BreadcrumbService) { }
+  constructor(private shopService: ShopService, private param: ActivatedRoute, private bcService: BreadcrumbService) {
+    this.bcService.set('@productName', ' ');
+  }
 
   ngOnInit(): void {
     const id = this.getProductId();
@@ -24,9 +26,8 @@ export class ProductViewComponent implements OnInit {
     this.shopService.getProduct(id).subscribe(res => {
       this.product = res;
       this.bcService.set('@productName', this.product.name);
-      console.log(this.bcService);
     },
-    error=> {
+    error => {
       console.log(error);
     });
   }
