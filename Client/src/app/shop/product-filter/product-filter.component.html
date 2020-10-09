@@ -1,28 +1,19 @@
-<h5 class="textwar ml-3">Sort</h5>
-    <select class="custom-select mb-3" (change)="OnSortSelected($event.target.value)">
-      <option *ngFor="let sort of sortOptions"
-        [value]="sort.value"
-        [selected]="selectedSort===sort.value"
-      >{{sort.name}}</option>
-    </select>
+<h5 class="textwar mt-4 ml-3">Sort</h5>
+<select class="custom-select mt-3 mb-3" (change)="OnSortSelected($event.target.value)">
+  <option *ngFor="let sort of sortOptions" [value]="sort.value" [selected]="selectedSort===sort.value">
+    {{sort.name}}
+  </option>
+</select>
 
-    <h5 class="textwar ml-3">Brand</h5>
-    <ul class="list-group mb-3">
-      <li class="list-group-item"
-      *ngFor="let brand of brands"
-      [value]="brand.id"
-      [class.active]="selectedBrand === brand.id"
-      (click)="OnBrandSelected(brand.id)"
-      >{{brand.name}}
-      </li>
-    </ul>
+<h5 class="textwar ml-3">Brand</h5>
+<ul class="list-group mb-3">
+  <li class="list-group-item" *ngFor="let brand of brands" [value]="brand.id"
+    [class.active]="selectedBrand === brand.id" (click)="OnBrandSelected(brand.id)">{{brand.name}}
+  </li>
+</ul>
 
-    <h5 class="textwar ml-3">Type</h5>
-    <ul class="list-group mb-3">
-      <li class="list-group-item"
-      *ngFor="let type of types"
-      [value]="type.id"
-      [class.active]="selectedType === type.id"
-      (click)="OnTypeSelected(type.id)"
-      >{{type.name}}</li>
-    </ul>
+<h5 class="textwar ml-3">Type</h5>
+<ul class="list-group mb-3">
+  <li class="list-group-item" *ngFor="let type of types" [value]="type.id" [class.active]="selectedType === type.id"
+    (click)="OnTypeSelected(type.id)">{{type.name}}</li>
+</ul>
