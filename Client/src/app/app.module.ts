@@ -20,7 +20,7 @@ import { BusyInterceptor } from './core/intercept/busy.interceptor';
     HttpClientModule,
     CoreModule,
     RouterModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
