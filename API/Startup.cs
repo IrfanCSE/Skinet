@@ -1,8 +1,5 @@
-using API.Helper;
-using AutoMapper;
-using Core.Interface;
+using API.Extensions;
 using Infrastructure.Data;
-using Infrastructure.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,11 +27,8 @@ namespace API
                 return ConnectionMultiplexer.Connect(configuration);
             });
 
-            services.AddScoped<IProductRepository,ProductRepository>();
-            services.AddScoped(typeof(IGenericRepository<>),(typeof(GenericRepository<>)));
-            services.AddScoped<IBasketRepository,BasketRepository>();
+            services.ApplicationServices();
 
-            services.AddAutoMapper(typeof(MappingProfile));
             services.AddCors(opt=>
                 opt.AddPolicy("CorsPolicy",
                     policy=> policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")
