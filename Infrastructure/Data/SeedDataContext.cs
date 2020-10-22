@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.Extensions.Logging;
@@ -15,9 +16,11 @@ namespace Infrastructure.Data
         {
             try
             {
+                var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
                 if(!context.ProductTypes.Any())
                 {
-                var productsTypeData = File.ReadAllText("../Infrastructure/Data/SeedData/types.json");
+                var productsTypeData = File.ReadAllText(path + @"/Data/SeedData/types.json");
                 var productTypes = JsonConvert.DeserializeObject<List<ProductType>>(productsTypeData);
 
                 foreach (var type in productTypes)
@@ -29,7 +32,7 @@ namespace Infrastructure.Data
 
                 if(!context.ProductBrands.Any())
                 {
-                var productsBrandData = File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
+                var productsBrandData = File.ReadAllText(path + @"/Data/SeedData/brands.json");
                 var productBrands = JsonConvert.DeserializeObject<List<ProductBrand>>(productsBrandData);
 
                 foreach (var brand in productBrands)
@@ -41,7 +44,7 @@ namespace Infrastructure.Data
 
                 if(!context.Products.Any())
                 {
-                var productsData = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
+                var productsData = File.ReadAllText(path + @"/Data/SeedData/products.json");
                 var products = JsonConvert.DeserializeObject<List<Product>>(productsData);
 
                 foreach (var product in products)

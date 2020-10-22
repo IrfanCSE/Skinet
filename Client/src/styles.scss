@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
+@import '~bootswatch/dist/united/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~ngx-toastr/toastr.css';
+
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
 
 
 .xng-breadcrumb-root{

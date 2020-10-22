@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Type } from './../shared/Models/productType';
 import { Brand } from './../shared/Models/brand';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -11,7 +12,7 @@ import { Product } from '../shared/Models/product';
   providedIn: 'root',
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.baseApiUrl;
 
   constructor(private http: HttpClient) {}
 

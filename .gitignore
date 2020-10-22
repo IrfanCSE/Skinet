@@ -237,3 +237,5 @@ _Pvt_Extensions
 *.png
 *.jpg
 appsettings.Development.json
+API/wwwroot
+Publish
