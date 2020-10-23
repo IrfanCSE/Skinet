@@ -7,9 +7,10 @@
       <h3>{{product.name}}</h3>
       <p>Price: {{product.price | currency}}</p>
       <div class="d-flex">
-        <button class="fa fa-plus-circle btn fa-2x"></button>
-        <span class="font-weight-bold" style="font-size: 1.5rem;">5</span>
-        <button class="fa fa-minus-circle fa-2x btn"></button>
+        <button (click)="quantityDecrement()" class="fa fa-minus-circle btn fa-2x"></button>
+        <span class="font-weight-bold" style="font-size: 1.5rem;">{{quantity}}</span>
+        <button (click)="quantityIncrement()" class="fa fa-plus-circle fa-2x btn"></button>
+        <button (click)="AddItemToBasket()" class="btn btn-outline-primary">Add to basket</button>
       </div>
     </div>
   </div>
