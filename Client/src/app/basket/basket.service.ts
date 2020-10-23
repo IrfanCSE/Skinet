@@ -49,6 +49,25 @@ export class BasketService {
     this.setBasket(basket);
   }
 
+  increaseQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasket();
+    const index = basket.items.findIndex((x) => x.id === item.id);
+    basket.items[index].quantity++;
+    this.setBasket(basket);
+  }
+
+  decreaseQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasket();
+    const index = basket.items.findIndex((x) => x.id === item.id);
+    const currentItem = basket.items[index];
+    if (currentItem.quantity > 1) {
+      currentItem.quantity--;
+      this.setBasket(basket);
+    } else {
+      this.deleteItemFromBasket(item);
+    }
+  }
+
   private addBasketOrUpdate(
     basketItem: IBasketItem,
     items: IBasketItem[],
@@ -84,5 +103,24 @@ export class BasketService {
 
   getCurrentBasket() {
     return this.basketSource.value;
+  }
+
+  deleteItemFromBasket(item: IBasketItem) {
+    const basket = this.getCurrentBasket();
+    if (basket.items.some((x) => x.id === item.id)) {
+      basket.items = basket.items.filter((x) => x.id !== item.id);
+      if (basket.items.length > 0) {
+        this.setBasket(basket);
+      } else {
+        this.deleteBasket(basket.id);
+      }
+    }
+  }
+
+  deleteBasket(id: string) {
+    this.http.delete(this.baseUrl + 'basket?id=' + id).subscribe(() => {
+      this.basketSource.next(null);
+      localStorage.removeItem('basket_id');
+    });
   }
 }

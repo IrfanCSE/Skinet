@@ -1,1 +1,42 @@
-<p>basket works!</p>
+<div *ngIf="(basket$|async) === null" class="container d-flex justify-content-center">
+<h2>There is Nothing!</h2>
+</div>
+
+<div class="container" *ngIf="basket$|async as basket">
+  <div class="table">
+    <table class="table-striped table-hover table-responsive">
+      <thead class="text-center text-uppercase">
+        <th class="col-3">Product</th>
+        <th class="col-1">Price</th>
+        <th class="col-1">Quantity</th>
+        <th class="col-1">Total</th>
+        <th class="col-1">Remove</th>
+      </thead>
+      <tbody class="text-uppercase">
+        <tr *ngFor="let item of basket.items">
+          <td>
+            <div class="d-flex justify-content-around align-items-center">
+              <img src="{{item.pictureUrl}}" class="img-fluid" style="max-height: 50px;">
+              <a class="ml-5" routerLink="/shop/{{item.id}}">{{item.productName}}</a>
+            </div>
+            <p class="text-muted mb-0" style="font-style: italic;">Brand: {{item.brand}}</p>
+          </td>
+          <td class="text-center">
+            <p>{{item.price|currency}}</p>
+          </td>
+          <td class="d-flex justify-content-center">
+            <button (click)="DecreasQuantity(item)" class="fa fa-minus-circle btn fa-2x"></button>
+            <span class="font-weight-bold" style="font-size: 1.5rem;">{{item.quantity}}</span>
+            <button (click)="IncreasQuantity(item)" class="fa fa-plus-circle fa-2x btn"></button>
+          </td>
+          <td class="text-center">
+            {{item.price*item.quantity|currency}}
+          </td>
+          <td class="d-flex justify-content-center">
+            <button (click)="RemoveItem(item)" class="fa fa-trash fa-2x btn"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
