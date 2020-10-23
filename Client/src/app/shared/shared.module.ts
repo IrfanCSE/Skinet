@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BasketTotalComponent } from './components/basket-total/basket-total.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [BasketTotalComponent],
   imports: [
     CommonModule,
   ],
-  exports: []
+  exports: [
+    BasketTotalComponent
+  ]
 })
 export class SharedModule { }

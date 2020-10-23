@@ -3,7 +3,7 @@
 </div>
 
 <div class="container" *ngIf="basket$|async as basket">
-  <div class="table">
+  <div class="table" *ngIf="basket.items.length > 0">
     <table class="table-striped table-hover table-responsive">
       <thead class="text-center text-uppercase">
         <th class="col-3">Product</th>
@@ -39,4 +39,9 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="container row">
+<div class="col-6 offset-6">
+<app-basket-total></app-basket-total>
+</div>
 </div>

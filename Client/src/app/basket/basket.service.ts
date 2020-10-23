@@ -1,7 +1,7 @@
 import { Product } from './../shared/Models/product';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Basket, IBasket, IBasketItem } from './../shared/Models/basket';
+import { Basket, IBasket, IBasketItem, IBasketTotall } from './../shared/Models/basket';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -11,8 +11,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BasketService {
   baseUrl = environment.baseApiUrl;
+
   private basketSource = new BehaviorSubject<IBasket>(null);
+  private basketTotallSource = new BehaviorSubject<IBasketTotall>(null);
+
   basket$ = this.basketSource.asObservable();
+  basketTotall$ = this.basketTotallSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +24,7 @@ export class BasketService {
     return this.http.get<IBasket>(this.baseUrl + 'basket?id=' + id).pipe(
       map((response: IBasket) => {
         this.basketSource.next(response);
+        this.calculateTotall();
       })
     );
   }
@@ -29,7 +34,7 @@ export class BasketService {
       .post<IBasket>(this.baseUrl + 'basket', basket)
       .subscribe((response: IBasket) => {
         this.basketSource.next(response);
-        console.log(response);
+        this.calculateTotall();
       });
   }
 
@@ -66,6 +71,14 @@ export class BasketService {
     } else {
       this.deleteItemFromBasket(item);
     }
+  }
+
+  private calculateTotall(){
+    const basket = this.getCurrentBasket();
+    const shipping = 0;
+    const subtotall = basket.items.reduce((pre, current) => (current.price * current.quantity) + pre, 0);
+    const totall = shipping + subtotall;
+    this.basketTotallSource.next({shipping, subtotall, totall});
   }
 
   private addBasketOrUpdate(
@@ -121,6 +134,7 @@ export class BasketService {
     this.http.delete(this.baseUrl + 'basket?id=' + id).subscribe(() => {
       this.basketSource.next(null);
       localStorage.removeItem('basket_id');
+      this.basketTotallSource.next(null);
     });
   }
 }
