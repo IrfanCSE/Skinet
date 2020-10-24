@@ -9,6 +9,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
   {path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule), data: {breadcrumb: 'Shop'}},
   {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule), data: {breadcrumb: 'Basket'}},
+  {path: 'checkout', loadChildren: () => import('./check-out/check-out.module').
+    then(m => m.CheckOutModule), data: {breadcrumb: 'Checkout'}},
   {path: 'not-found', component: NotFoundComponent, data: {breadcrumb: 'NotFound'}},
   {path: 'server-error', component: ServerErrorComponent, data: {breadcrumb: 'ServerError'}},
   {path: 'test-error', component: TestErrorComponent, data: {breadcrumb: 'TestError'}},
