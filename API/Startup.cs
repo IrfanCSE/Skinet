@@ -53,7 +53,7 @@ namespace API
             services.AddControllers();
 
             services.ApplicationServices();
-            services.AddIdentityServices();
+            services.AddIdentityServices(_configuration);
 
             services.AddCors(opt =>
                 opt.AddPolicy("CorsPolicy",
@@ -84,6 +84,7 @@ namespace API
 
             app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
