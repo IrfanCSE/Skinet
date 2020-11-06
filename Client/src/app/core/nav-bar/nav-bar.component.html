@@ -13,8 +13,24 @@
       <i class="fa fa-shopping-cart fa-2x mr-5" style="color: black;"></i>
       <div *ngIf="basket$ | async as basket" class="cart-no">{{basket.items.length}}</div>
     </a>
-    <a class="btn btn-outline-secondary mr-1">Login</a>
-    <a class="btn btn-outline-secondary">SignUp</a>
+    <ng-container *ngIf="(user$|async) == null">
+      <a routerLink="/account/login" class="btn btn-outline-secondary mr-1">Login</a>
+      <a routerLink="/account/register" class="btn btn-outline-secondary">SignUp</a>
+    </ng-container>
+    <ng-container *ngIf="(user$|async)as user">
+      <div class="btn-group" dropdown>
+        <button id="button-animated" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
+                aria-controls="dropdown-animated">{{user.displayName}}<span class="caret"></span>
+        </button>
+        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"><a class="dropdown-item">Profile</a></li>
+          <li role="menuitem"><a class="dropdown-item">Basket</a></li>
+          <div class="dropdown-divider"></div>
+          <li role="menuitem"><a class="dropdown-item">Logout</a></li>
+        </ul>
+      </div>
+    </ng-container>
   </div>
 
 </div>
