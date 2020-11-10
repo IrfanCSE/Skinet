@@ -35,7 +35,6 @@ export class AccountService {
         if (user){
         localStorage.setItem('token', user.token);
         this.currentUserSource.next(user);
-        console.log(user);
         this.router.navigateByUrl('/shop');
       }
       })

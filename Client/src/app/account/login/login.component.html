@@ -5,7 +5,7 @@
       <app-input-field formControlName="email" [label]="'Email Address'"></app-input-field>
       <app-input-field formControlName="password" [type]="'password'" [label]="'Password'"></app-input-field>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
   </div>
 </div>

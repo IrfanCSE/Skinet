@@ -20,7 +20,7 @@
     <ng-container *ngIf="(user$|async)as user">
       <div class="btn-group" dropdown>
         <button id="button-animated" dropdownToggle type="button" class="btn btn-outline-primary dropdown-toggle"
-                aria-controls="dropdown-animated">{{user.displayName}}<span class="caret"></span>
+                aria-controls="dropdown-animated">Wellcome {{user.displayName}}<span class="caret"></span>
         </button>
         <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
             role="menu" aria-labelledby="button-animated">

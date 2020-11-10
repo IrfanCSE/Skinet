@@ -15,7 +15,10 @@ export class BusyInterceptor implements HttpInterceptor {
   constructor(private spinner: NgxSpinnerService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    this.spinner.show();
+
+    if (!request.url.includes('emailExists')){
+      this.spinner.show();
+    }
 
     return next.handle(request).pipe(
       delay(1000),
