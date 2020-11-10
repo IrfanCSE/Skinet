@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { User } from './../shared/Models/user';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ReplaySubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -18,6 +18,11 @@ export class AccountService {
   constructor(private http: HttpClient, private router: Router) { }
 
   loadCurrentUser(token: string){
+    if (token === null){
+      this.currentUserSource.next(null);
+      return of(null);
+    }
+
     let header = new HttpHeaders();
     header = header.set('Authorization', `Bearer ${token}`);
 
@@ -35,7 +40,6 @@ export class AccountService {
         if (user){
         localStorage.setItem('token', user.token);
         this.currentUserSource.next(user);
-        this.router.navigateByUrl('/shop');
       }
       })
     );
