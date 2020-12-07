@@ -12,5 +12,9 @@ namespace Core.Interface
          Task<T> GetEntityWithSpec(ISpecifications<T> spec, int id);
          Task<IReadOnlyList<T>> GetEntityListWithSpec(ISpecifications<T> spec);
          Task<int> GetCountAsync(ISpecifications<T> spec);
+
+         void Add(T entity);
+         void Update(T entity);
+         void Remove(T entity);
     }
 }
