@@ -7,12 +7,15 @@ namespace Core.Specifications
     public class BaseSpecifications<T> : ISpecifications<T>
     {
         public BaseSpecifications(){}
+
+        // for add where or any boolean case.
         public BaseSpecifications(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria;
         }
-
         public Expression<Func<T, bool>> Criteria {get;}
+        
+        // other linq method helper. 
         public List<Expression<Func<T, object>>> Includes {get;} = new List<Expression<Func<T, object>>>();
         public Expression<Func<T, object>> OrderBy {get; private set;}
         public Expression<Func<T, object>> OrderByDesc {get; private set;}

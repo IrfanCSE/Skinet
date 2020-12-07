@@ -1,4 +1,3 @@
-using System.Data.SqlTypes;
 using System.Linq;
 using Core.Entities;
 using Core.Specifications;
@@ -24,6 +23,7 @@ namespace Infrastructure.Data
                 query = query.OrderByDescending(spec.OrderByDesc);
             }
 
+            // look up on every include then add one by one sequentialy.
             query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 
             if(spec.IsPagingEnable){

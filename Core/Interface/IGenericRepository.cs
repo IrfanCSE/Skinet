@@ -9,6 +9,7 @@ namespace Core.Interface
     {
          Task<T> GetEntityWithOutSpec(int id);
          Task<IReadOnlyList<T>> GetEntityListWithOutSpec();
+         Task<T> GetEntityWithSpec(ISpecifications<T> spec);
          Task<T> GetEntityWithSpec(ISpecifications<T> spec, int id);
          Task<IReadOnlyList<T>> GetEntityListWithSpec(ISpecifications<T> spec);
          Task<int> GetCountAsync(ISpecifications<T> spec);
